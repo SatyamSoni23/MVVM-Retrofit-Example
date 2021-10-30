@@ -12,11 +12,10 @@ public class MainViewModel extends ViewModel {
     private QuoteRepository quoteRepository;
     public MainViewModel(QuoteRepository quoteRepository){
         this.quoteRepository = quoteRepository;
-        Log.d("KJHSJ", "OK6");
     }
 
-    public LiveData<QuoteList> quotes = get();
-    private LiveData<QuoteList> get(){
+    //public LiveData<QuoteList> quotes = get();
+    public LiveData<QuoteList> quotes(){
         quoteRepository.getQuotes(1);
         return quoteRepository.quotes;
     }

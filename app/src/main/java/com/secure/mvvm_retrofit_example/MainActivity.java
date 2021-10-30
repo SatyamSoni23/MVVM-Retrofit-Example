@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -23,10 +24,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        QuoteService quoteService = RetrofitHelper.getInstance().create(QuoteService.class);
-        QuoteRepository repository = new QuoteRepository(quoteService);
+        QuoteApplication quoteApplication = new QuoteApplication();
+        QuoteRepository repository = quoteApplication.quoteRepository;
+
         mainViewModel = new ViewModelProvider(this, new MainViewModelFactory(repository)).get(MainViewModel.class);
-        mainViewModel.quotes.observe(this, new Observer<QuoteList>() {
+        mainViewModel.quotes().observe(this, new Observer<QuoteList>() {
             @Override
             public void onChanged(QuoteList quoteList) {
                 Log.d("FIRST_ONE", quoteList.toString());

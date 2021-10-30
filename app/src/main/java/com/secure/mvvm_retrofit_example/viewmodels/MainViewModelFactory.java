@@ -10,13 +10,15 @@ import com.secure.mvvm_retrofit_example.repository.QuoteRepository;
 
 public class MainViewModelFactory implements ViewModelProvider.Factory {
     private QuoteRepository repository;
+
     public MainViewModelFactory(QuoteRepository repository){
         this.repository = repository;
     }
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        Log.d("KJHSJ", "OK5");
-        return (T) new MainViewModel(repository);
+        if(modelClass.isAssignableFrom(MainViewModel.class))
+            return (T) new MainViewModel(repository);
+        throw new IllegalArgumentException("Unknown class name");
     }
 }
