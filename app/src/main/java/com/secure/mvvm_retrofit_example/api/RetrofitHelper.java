@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitHelper {
 
-    public static String BASE_URL = "https://quotable.io";
+    public static String BASE_URL = "https://quotable.io/";
 
     public static Retrofit getInstance(){
         return new Retrofit.Builder()

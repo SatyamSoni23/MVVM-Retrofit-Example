@@ -26,12 +26,11 @@ public class MainActivity extends AppCompatActivity {
         QuoteService quoteService = RetrofitHelper.getInstance().create(QuoteService.class);
         QuoteRepository repository = new QuoteRepository(quoteService);
         mainViewModel = new ViewModelProvider(this, new MainViewModelFactory(repository)).get(MainViewModel.class);
-
-//        mainViewModel.quotes.observe(this, new Observer<QuoteList>() {
-//            @Override
-//            public void onChanged(QuoteList quoteList) {
-//                Log.d("FIRST_ONE", quoteList.toString());
-//            }
-//        });
+        mainViewModel.quotes.observe(this, new Observer<QuoteList>() {
+            @Override
+            public void onChanged(QuoteList quoteList) {
+                Log.d("FIRST_ONE", quoteList.toString());
+            }
+        });
     }
 }

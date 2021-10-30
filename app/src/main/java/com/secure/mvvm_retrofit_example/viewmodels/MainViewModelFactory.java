@@ -1,5 +1,7 @@
 package com.secure.mvvm_retrofit_example.viewmodels;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,6 +16,7 @@ public class MainViewModelFactory implements ViewModelProvider.Factory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+        Log.d("KJHSJ", "OK5");
         return (T) new MainViewModel(repository);
     }
 }

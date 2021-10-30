@@ -14,7 +14,7 @@ import retrofit2.Response;
 
 public class QuoteRepository {
     private QuoteService quoteService;
-    private MutableLiveData<QuoteList> quotesLiveData = new MutableLiveData<>();
+    private MutableLiveData<QuoteList> quotesLiveData = new MutableLiveData<QuoteList>();
 
     public QuoteRepository(QuoteService quoteService){
         this.quoteService = quoteService;
@@ -32,7 +32,6 @@ public class QuoteRepository {
             @Override
             public void onResponse(Call<QuoteList> call, Response<QuoteList> response) {
                 if(response != null && response.body() != null){
-                    Log.d("FIRST_ONE", "OK");
                     quotesLiveData.postValue(response.body());
                 }
             }

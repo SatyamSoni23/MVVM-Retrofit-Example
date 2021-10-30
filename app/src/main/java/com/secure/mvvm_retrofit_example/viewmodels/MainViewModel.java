@@ -1,5 +1,7 @@
 package com.secure.mvvm_retrofit_example.viewmodels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -10,11 +12,12 @@ public class MainViewModel extends ViewModel {
     private QuoteRepository quoteRepository;
     public MainViewModel(QuoteRepository quoteRepository){
         this.quoteRepository = quoteRepository;
-        quoteRepository.getQuotes(1);
+        Log.d("KJHSJ", "OK6");
     }
 
-//    public LiveData<QuoteList> quotes = get();
-//    private LiveData<QuoteList> get(){
-//        return quoteRepository.quotes;
-//    }
+    public LiveData<QuoteList> quotes = get();
+    private LiveData<QuoteList> get(){
+        quoteRepository.getQuotes(1);
+        return quoteRepository.quotes;
+    }
 }
