@@ -10,6 +10,15 @@ public class QuoteList{
 	private int totalCount;
 	private List<ResultsItem> results;
 
+	public QuoteList(int count, int totalPages, int lastItemIndex, List<ResultsItem> results, int page, int totalCount) {
+		this.count = count;
+		this.totalPages = totalPages;
+		this.lastItemIndex = lastItemIndex;
+		this.results = results;
+		this.page = page;
+		this.totalCount = totalCount;
+	}
+
 	public int getCount(){
 		return count;
 	}

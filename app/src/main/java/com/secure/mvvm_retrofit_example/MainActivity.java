@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.secure.mvvm_retrofit_example.api.QuoteService;
 import com.secure.mvvm_retrofit_example.api.RetrofitHelper;
@@ -24,14 +25,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        QuoteApplication quoteApplication = new QuoteApplication();
-        QuoteRepository repository = quoteApplication.quoteRepository;
-
+        QuoteRepository repository = ((QuoteApplication)getApplicationContext()).quoteRepository;
         mainViewModel = new ViewModelProvider(this, new MainViewModelFactory(repository)).get(MainViewModel.class);
         mainViewModel.quotes().observe(this, new Observer<QuoteList>() {
             @Override
             public void onChanged(QuoteList quoteList) {
                 Log.d("FIRST_ONE", quoteList.toString());
+                Toast.makeText(MainActivity.this, String.valueOf(quoteList.getResults().size()), Toast.LENGTH_SHORT).show();
             }
         });
     }
