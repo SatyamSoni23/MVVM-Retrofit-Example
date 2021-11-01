@@ -1,5 +1,5 @@
 # MVVM-Retrofit-Example
-Simple Quotation app based on MVVM Architecture that covers topics like Data Binding, Work Manager for scheduling periodic tasks, Life Cycle, also for online and offline support it uses retrofit and room database.
+Simple Quotation app based on MVVM Architecture that covers topics like Data Binding, Work Manager for scheduling periodic tasks, Life Cycle, Android Jetpack, also for online and offline support it uses retrofit and room database, SQLite3.
 
 ## Screenshots
 <table>
