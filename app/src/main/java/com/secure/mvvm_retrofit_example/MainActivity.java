@@ -6,14 +6,17 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.secure.mvvm_retrofit_example.api.QuoteService;
 import com.secure.mvvm_retrofit_example.api.RetrofitHelper;
 import com.secure.mvvm_retrofit_example.databinding.ActivityMainBinding;
 import com.secure.mvvm_retrofit_example.models.QuoteList;
+import com.secure.mvvm_retrofit_example.models.ResultsItem;
 import com.secure.mvvm_retrofit_example.repository.QuoteRepository;
 import com.secure.mvvm_retrofit_example.view.ViewUtil;
 import com.secure.mvvm_retrofit_example.viewmodels.MainViewModel;
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(MainActivity.this, String.valueOf(quoteList.getResults().size()), Toast.LENGTH_SHORT).show();
                 viewUtil = new ViewUtil(0, quoteList.getResults());
                 setQuote(viewUtil.getQuote().getContent(), viewUtil.getQuote().getAuthor());
+                Log.d("PROCESS", "AGAIN CALL");
             }
         });
     }
@@ -48,11 +52,20 @@ public class MainActivity extends AppCompatActivity {
         binding.setAuthor(author);
     }
 
-    public void nextQuote(){
-        setQuote(viewUtil.nextQuote().getContent(), viewUtil.nextQuote().getAuthor());
+    public void nextQuote(View v){
+        ResultsItem resultsItem = viewUtil.nextQuote();
+        setQuote(resultsItem.getContent(), resultsItem.getAuthor());
     }
 
-    public void previousQuote(){
-        setQuote(viewUtil.previousQuote().getContent(), viewUtil.previousQuote().getAuthor());
+    public void previousQuote(View v){
+        ResultsItem resultsItem = viewUtil.previousQuote();
+        setQuote(resultsItem.getContent(), resultsItem.getAuthor());
+    }
+
+    public void onShare(View v) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, viewUtil.getQuote().getContent());
+        startActivity(intent);
     }
 }

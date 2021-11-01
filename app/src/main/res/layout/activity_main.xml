@@ -10,9 +10,6 @@
         <variable
             name="author"
             type="String" />
-        <variable
-            name="main"
-            type="com.secure.mvvm_retrofit_example.MainActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
