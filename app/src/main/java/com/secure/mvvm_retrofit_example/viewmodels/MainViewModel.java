@@ -19,4 +19,6 @@ public class MainViewModel extends ViewModel {
         quoteRepository.getQuotes(1);
         return quoteRepository.quotes;
     }
+
+
 }

@@ -6,7 +6,6 @@ import androidx.work.Constraints;
 import androidx.work.NetworkType;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
-import androidx.work.WorkRequest;
 
 import com.secure.mvvm_retrofit_example.api.QuoteService;
 import com.secure.mvvm_retrofit_example.api.RetrofitHelper;
@@ -29,7 +28,7 @@ public class QuoteApplication extends Application {
 
     private void setupWorker() {
         Constraints constraint = new Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build();
-        WorkRequest workerRequest = new PeriodicWorkRequest.Builder(QuoteWorker.class, 30, TimeUnit.SECONDS)
+        PeriodicWorkRequest workerRequest = new PeriodicWorkRequest.Builder(QuoteWorker.class, 1, TimeUnit.MINUTES)
                 .setConstraints(constraint)
                 .build();
         WorkManager.getInstance(this).enqueue(workerRequest);
